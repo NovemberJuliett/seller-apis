@@ -12,7 +12,37 @@ logger = logging.getLogger(__file__)
 
 
 def get_product_list(last_id, client_id, seller_token):
-    """Получить список товаров магазина озон"""
+    """Загружает список товаров магазина на Озоне
+
+    Аргументы:
+        last_id: идентификатор последнего значения на странице
+        client_id: идентификатор клиента
+        seller_token: API клиента
+
+    Возвращает:
+        значение словаря по ключу "result"
+
+    Пример корректного выполнения функции:
+        {
+          "result": {
+            "items": [
+              {
+                "product_id": 223681945,
+                "offer_id": "136748"
+              }
+            ],
+            "total": 1,
+            "last_id": "bnVсbA=="
+          }
+        }
+
+    Пример некорректного выполнения функции:
+        {
+            "code":16,
+            "message":"Client-Id and Api-Key headers are required"
+        }
+    """
+
     url = "https://api-seller.ozon.ru/v2/product/list"
     headers = {
         "Client-Id": client_id,

@@ -192,7 +192,6 @@ def download_stock():
     response.raise_for_status()
     with response, zipfile.ZipFile(io.BytesIO(response.content)) as archive:
         archive.extractall(".")
-    # Создаем список остатков часов:
     excel_file = "ostatki.xls"
     watch_remnants = pd.read_excel(
         io=excel_file,
@@ -200,11 +199,27 @@ def download_stock():
         keep_default_na=False,
         header=17,
     ).to_dict(orient="records")
-    os.remove("./ostatki.xls")  # Удалить файл
+    os.remove("./ostatki.xls")
     return watch_remnants
 
 
 def create_stocks(watch_remnants, offer_ids):
+    """Обновляет список товаров магазина на Озоне
+
+    Аргументы:
+        watch_remnants: остатки часов
+        offer_ids: артикулы товаров магазина на Озоне
+
+    Возвращает:
+        обновленный список товаров после сверки остатков часов с наличием товаров
+        магазина на Озоне
+
+    Пример корректного выполнения функции:
+        stocks = ["offer_id": offer_id, "stock": 0]
+
+    Пример некорректного выполнения функции:
+        []
+    """
     # Уберем то, что не загружено в seller
     stocks = []
     for watch in watch_remnants:

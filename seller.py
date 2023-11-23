@@ -315,6 +315,28 @@ def divide(lst: list, n: int):
 
 
 async def upload_prices(watch_remnants, client_id, seller_token):
+    """Загружает обновленные цены на товары
+
+    Аргументы:
+        watch_remnants: остатки часов
+        client_id: идентификатор клиента
+        seller_token: API клиента
+
+    Возвращает:
+        список цен на товары
+
+     Пример корректного исполнения функции:
+        [
+            {"offer_id": 1, "price": 5000},
+            {"offer_id": 2, "price": 7599},
+            {"offer_id": 3, "price": 1205},
+        ]
+
+    Пример некорректного исполнения функции:
+        [
+            {"offer_id": 0, "price": 0}
+        ]
+    """
     offer_ids = get_offer_ids(client_id, seller_token)
     prices = create_prices(watch_remnants, offer_ids)
     for some_price in list(divide(prices, 1000)):
@@ -323,6 +345,24 @@ async def upload_prices(watch_remnants, client_id, seller_token):
 
 
 async def upload_stocks(watch_remnants, client_id, seller_token):
+    """Загружает обновленные остатки товаров
+
+    Аргументы:
+        watch_remnants: остатки часов
+        client_id: идентификатор клиента
+        seller_token: API клиента
+
+    Возвращает:
+        список товаров, наличие которых не равно 0 и обновленный список остатков товаров
+
+    Пример корректного исполнения функции:
+        not_empty = ["offer_id": 245345, "stock": 150]
+        stocks = ["offer_id": 12345, "stock": 1223]
+
+    Пример некорректного исполнения функции:
+        not_empty = ["offer_id": 245345, "stock": 0]
+        stocks = ["offer_id": 0, "stock": 0]
+    """
     offer_ids = get_offer_ids(client_id, seller_token)
     stocks = create_stocks(watch_remnants, offer_ids)
     for some_stock in list(divide(stocks, 100)):

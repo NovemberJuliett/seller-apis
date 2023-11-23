@@ -133,7 +133,33 @@ def update_price(prices: list, client_id, seller_token):
 
 
 def update_stocks(stocks: list, client_id, seller_token):
-    """Обновить остатки"""
+    """Обновляет информацию о количестве товара в наличии
+
+     Аргументы:
+        stocks: список товаров на складах
+        client_id: идентификатор клиента
+        seller_token: API клиента
+
+    Возвращает:
+        результат запроса в формате json
+
+    Пример корректного выполнения функции:
+        {
+            "result": [
+                {
+                "product_id": 55946,
+                "offer_id": "PG-2404С1",
+                "updated": true,
+                "errors": []
+                }
+            ]
+        }
+    Пример некорректного выполнения функции:
+        {
+            "code":16,
+            "message":"Client-Id and Api-Key headers are required"
+        }
+    """
     url = "https://api-seller.ozon.ru/v1/product/import/stocks"
     headers = {
         "Client-Id": client_id,

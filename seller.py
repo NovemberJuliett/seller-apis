@@ -62,7 +62,21 @@ def get_product_list(last_id, client_id, seller_token):
 
 
 def get_offer_ids(client_id, seller_token):
-    """Получить артикулы товаров магазина озон"""
+    """Загружает артикулы товаров магазина на Озоне
+
+    Аргументы:
+        client_id: идентификатор клиента
+        seller_token: API клиента
+
+    Возвращает:
+       список значений словаря по ключу "offer_id"
+
+    Пример корректного выполнения функции:
+        offer_ids = ["12345б", "873987", "8987987"]
+
+    Пример некорректного выполнения функции:
+        offer_ids = []
+    """
     last_id = ""
     product_list = []
     while True:
@@ -79,7 +93,15 @@ def get_offer_ids(client_id, seller_token):
 
 
 def update_price(prices: list, client_id, seller_token):
-    """Обновить цены товаров"""
+    """Позволяет изменить цену одного или нескольких товаров
+
+
+
+
+
+
+
+    """
     url = "https://api-seller.ozon.ru/v1/product/import/prices"
     headers = {
         "Client-Id": client_id,

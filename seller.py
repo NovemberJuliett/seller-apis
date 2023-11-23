@@ -295,9 +295,23 @@ def price_conversion(price: str) -> str:
 
 
 def divide(lst: list, n: int):
-    """Разделить список lst на части по n элементов"""
+    """Делит список lst на части по n элементов
+
+    Аргументы:
+         lst: list: исходный список чисел
+         n: int: сколько элементов будет в каждой части списка после раздела
+
+    Возвращает:
+        список со списками по n элементов в каждом
+
+    Пример корректного исполнения функции:
+    list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+    Пример некорректного исполнения функции:
+    list = [1, 2, 3, 4, 5, 6]
+    """
     for i in range(0, len(lst), n):
-        yield lst[i : i + n]
+        yield lst[i: i + n]
 
 
 async def upload_prices(watch_remnants, client_id, seller_token):

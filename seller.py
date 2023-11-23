@@ -12,7 +12,7 @@ logger = logging.getLogger(__file__)
 
 
 def get_product_list(last_id, client_id, seller_token):
-    """Загружает список товаров магазина на Озоне
+    """Выводит список товаров магазина на Озоне
 
     Аргументы:
         last_id: идентификатор последнего значения на странице
@@ -20,7 +20,7 @@ def get_product_list(last_id, client_id, seller_token):
         seller_token: API клиента
 
     Возвращает:
-        значение словаря по ключу "result"
+        результат запроса в формате json, отсортированный по ключу "result"
 
     Пример корректного выполнения функции:
         {
@@ -62,7 +62,7 @@ def get_product_list(last_id, client_id, seller_token):
 
 
 def get_offer_ids(client_id, seller_token):
-    """Загружает артикулы товаров магазина на Озоне
+    """Выводит артикулы товаров магазина на Озоне
 
     Аргументы:
         client_id: идентификатор клиента
@@ -93,14 +93,33 @@ def get_offer_ids(client_id, seller_token):
 
 
 def update_price(prices: list, client_id, seller_token):
-    """Позволяет изменить цену одного или нескольких товаров
+    """Позволяет изменить цену одного или нескольких товаров.
 
+    Аргументы:
+        prices: список цен на товары
+        client_id: идентификатор клиента
+        seller_token: API клиента
 
+    Возвращает:
+        результат запроса в формате json
 
+    Пример корректного выполнения функции:
+        {
+          "result": [
+            {
+              "product_id": 1386,
+              "offer_id": "PH8865",
+              "updated": true,
+              "errors": []
+            }
+          ]
+        }
 
-
-
-
+    Пример некорректного выполнения функции:
+        {
+            "code":16,
+            "message":"Client-Id and Api-Key headers are required"
+        }
     """
     url = "https://api-seller.ozon.ru/v1/product/import/prices"
     headers = {

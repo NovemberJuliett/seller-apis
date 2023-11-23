@@ -240,6 +240,27 @@ def create_stocks(watch_remnants, offer_ids):
 
 
 def create_prices(watch_remnants, offer_ids):
+    """Создает цены в обновленном списке товаров магазина на Озоне
+
+    Аргументы:
+        watch_remnants: остатки часов
+        offer_ids: артикулы товаров магазина на Озоне
+
+    Возвращает:
+        список словарей с ценами на товары
+
+    Пример корректного выполнения функции:
+        price = [{
+                "auto_action_enabled": "UNKNOWN",
+                "currency_code": "RUB",
+                "offer_id": 3453465,
+                "old_price": "0",
+                "price": 5990,
+            }]
+
+    Пример некорректного выполнения функции:
+        price = []
+    """
     prices = []
     for watch in watch_remnants:
         if str(watch.get("Код")) in offer_ids:

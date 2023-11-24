@@ -11,6 +11,43 @@ logger = logging.getLogger(__file__)
 
 
 def get_product_list(page, campaign_id, access_token):
+    """Выводит список товаров в каталоге с параметрами каждого товара
+
+    Аргументы:
+    page: идентификатор страницы c результатами
+    campaign_id: идентификатор кабинета
+    access_token: ключ авторизации в кабинете
+
+    Возвращает: результат запроса в формате json
+
+    Пример корректного выполнения функции:
+            {
+            "offerIds": [
+                "124234"
+            ],
+            "cardStatuses": [
+                "HAS_CARD_CAN_NOT_UPDATE"
+            ],
+            "categoryIds": [
+                343
+            ],
+            "vendorNames": [
+                "STR"
+            ],
+            "tags": [
+                "str_product"
+            ],
+            "archived": false
+        }
+    Пример некорректного выполнения функции:
+        {"errors": [
+            {
+                "code":"UNAUTHORIZED",
+                "message":"OAuth credentials are not specified"
+            }
+        ],
+        "status":"ERROR"}
+    """
     endpoint_url = "https://api.partner.market.yandex.ru/"
     headers = {
         "Content-Type": "application/json",

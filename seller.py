@@ -20,7 +20,7 @@ def get_product_list(last_id, client_id, seller_token):
         seller_token: API клиента
 
     Возвращает:
-        результат запроса в формате json, отсортированный по ключу "result"
+        результат запроса в формате json
 
     Пример корректного выполнения функции:
         {

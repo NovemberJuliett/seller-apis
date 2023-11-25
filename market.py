@@ -282,6 +282,27 @@ def create_stocks(watch_remnants, offer_ids, warehouse_id):
 
 
 def create_prices(watch_remnants, offer_ids):
+    """Создает цены в обновленном списке товаров магазина на Яндекс Маркете
+
+    Аргументы:
+        watch_remnants: остатки часов
+        offer_ids: артикулы товаров
+
+    Возвращает:
+        список словарей с ценами на товары
+
+    Пример корректного выполнения функции:
+        {
+            "id": "123",
+            "price": {
+                "value": 5000,  # The converted price value, assuming price_conversion("50") returns 5000
+                "currencyId": "RUR",
+            },
+        }
+
+    Пример некорректного выполнения функции:
+    []
+    """
     prices = []
     for watch in watch_remnants:
         if str(watch.get("Код")) in offer_ids:

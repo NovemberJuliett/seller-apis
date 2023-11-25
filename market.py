@@ -67,6 +67,44 @@ def get_product_list(page, campaign_id, access_token):
 
 
 def update_stocks(stocks, campaign_id, access_token):
+    """Передает данные об остатках товаров на витрине.
+
+    Аргументы:
+    stocks: данные об остатках товаров
+    campaign_id: идентификатор кабинета
+    access_token: ключ авторизации в кабинете
+
+    Возвращает: результат запроса в формате json
+
+    Пример корректного выполнения функции:
+
+            {
+            "skus": [
+                {
+                    "sku": "234234",
+                    "warehouseId": 343,
+                    "items": [
+                        {
+                            "count": 1,
+                            "type": "FIT",
+                            "updatedAt": "2022-12-29T18:02:01Z"
+                        }
+                    ]
+                }
+            ]
+        }
+
+     Пример некорректного выполнения функции:
+        {"errors": [
+            {
+                "code":"UNAUTHORIZED",
+                "message":"OAuth credentials are not specified"
+            }
+        ],
+        "status":"ERROR"}
+ """
+
+
     endpoint_url = "https://api.partner.market.yandex.ru/"
     headers = {
         "Content-Type": "application/json",

@@ -323,6 +323,29 @@ def create_prices(watch_remnants, offer_ids):
 
 
 async def upload_prices(watch_remnants, campaign_id, market_token):
+    """Загружает обновленные цены на товары
+
+    Аргументы:
+        watch_remnants: остатки часов
+        campaign_id: идентификатор кампании в API и магазина в кабинете
+        market_token: учетные данные владельца магазина
+
+    Возвращает:
+        список цен на товары
+
+    Пример корректного исполнения функции:
+        [
+            {"offer_id": 1, "price": 5000},
+            {"offer_id": 2, "price": 7599},
+            {"offer_id": 3, "price": 1205},
+        ]
+
+    Пример некорректного исполнения функции:
+        [
+            {"offer_id": 0, "price": 0}
+        ]
+
+    """
     offer_ids = get_offer_ids(campaign_id, market_token)
     prices = create_prices(watch_remnants, offer_ids)
     for some_prices in list(divide(prices, 500)):
@@ -331,6 +354,24 @@ async def upload_prices(watch_remnants, campaign_id, market_token):
 
 
 async def upload_stocks(watch_remnants, campaign_id, market_token, warehouse_id):
+    """
+
+    watch_remnants: остатки часов
+    campaign_id: идентификатор кампании в API и магазина в кабинете
+    market_token: учетные данные владельца магазина
+    warehouse_id: идентификатор склада
+
+    Возвращает:
+        список товаров, наличие которых не равно 0, и обновленный список остатков товаров
+
+    Пример корректного исполнения функции:
+        not_empty = ["offer_id": 245345, "stock": 150]
+        stocks = [{"offer_id": 12345, "stock": 1223}, {"offer_id": 1345, "stock": 45} ]
+
+    Пример некорректного исполнения функции:
+        not_empty = ["offer_id": 245345, "stock": 0]
+        stocks = ["offer_id": 0, "stock": 0]
+    """
     offer_ids = get_offer_ids(campaign_id, market_token)
     stocks = create_stocks(watch_remnants, offer_ids, warehouse_id)
     for some_stock in list(divide(stocks, 2000)):

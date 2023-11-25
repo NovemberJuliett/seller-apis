@@ -15,7 +15,7 @@ def get_product_list(page, campaign_id, access_token):
 
     Аргументы:
         page: идентификатор страницы c результатами
-        campaign_id: идентификатор кабинета
+        campaign_id: идентификатор кампании в API и магазина в кабинете
         access_token: ключ авторизации в кабинете
 
     Возвращает:
@@ -72,7 +72,7 @@ def update_stocks(stocks, campaign_id, access_token):
 
     Аргументы:
         stocks: данные об остатках товаров
-        campaign_id: идентификатор кабинета
+        campaign_id: идентификатор кампании в API и магазина в кабинете
         access_token: ключ авторизации в кабинете
 
     Возвращает:
@@ -125,7 +125,7 @@ def update_price(prices, campaign_id, access_token):
 
     Аргументы:
         prices: список товаров
-        campaign_id: идентификатор кабинета
+        campaign_id: идентификатор кампании в API и магазина в кабинете
         access_token: ключ авторизации в кабинете
 
     Возвращает:
@@ -177,11 +177,11 @@ def update_price(prices, campaign_id, access_token):
 
 
 def get_offer_ids(campaign_id, market_token):
-    """Выводит артикулы товаров магазина на Яндекс маркета
+    """Выводит артикулы товаров магазина на Яндекс маркете
 
     Аргументы:
-        campaign_id: идентификатор кабинета
-        market_token: идентификатор магазина
+        campaign_id: идентификатор кампании в API и магазина в кабинете
+        market_token: учетные данные владельца магазина
 
     Возвращает:
         список артикулов товаров
@@ -207,6 +207,36 @@ def get_offer_ids(campaign_id, market_token):
 
 
 def create_stocks(watch_remnants, offer_ids, warehouse_id):
+    """Обновляет список товаров магазина
+
+    Аргументы:
+        watch_remnants: остатки часов
+        offer_ids: артикулы товаров
+        warehouse_id: идентификатор склада
+
+    Возвращает:
+        обновленный список товаров после сверки остатков часов с наличием товаров
+        магазина на Яндекс Маркете
+
+    Пример корректного выполнения функции:
+
+    [
+    {
+        "sku": "123",
+        "warehouseId": "W123",
+        "items": [
+            {
+                "count": 5,
+                "type": "FIT",
+                "updatedAt": "2023-11-25T12:30:45Z",
+            }
+        ],
+    }
+    ]
+
+    Пример некорректного выполнения функции:
+    []
+    """
     # Уберем то, что не загружено в market
     stocks = list()
     date = str(datetime.datetime.utcnow().replace(microsecond=0).isoformat() + "Z")

@@ -103,8 +103,6 @@ def update_stocks(stocks, campaign_id, access_token):
         ],
         "status":"ERROR"}
  """
-
-
     endpoint_url = "https://api.partner.market.yandex.ru/"
     headers = {
         "Content-Type": "application/json",
@@ -121,6 +119,45 @@ def update_stocks(stocks, campaign_id, access_token):
 
 
 def update_price(prices, campaign_id, access_token):
+    """Устанавливает цены на товары в магазине
+
+    Аргументы:
+    prices: список товаров
+    campaign_id: идентификатор кабинета
+    access_token: ключ авторизации в кабинете
+
+    Возвращает: результат запроса в формате json
+
+    Пример корректного выполнения функции:
+        {
+        "offers": [
+            {
+                "offerId": "3456",
+                "id": "34",
+                "feed": {
+                    "id": 45
+                },
+                "price": {
+                    "value": 345,
+                    "discountBase": 45,
+                    "currencyId": "RUR",
+                    "vat": 0
+                },
+                "marketSku": 34,
+                "shopSku": "1234"
+            }
+        ]
+    }
+
+    Пример некорректного выполнения функции:
+        {"errors": [
+            {
+                "code":"UNAUTHORIZED",
+                "message":"OAuth credentials are not specified"
+            }
+        ],
+        "status":"ERROR"}
+    """
     endpoint_url = "https://api.partner.market.yandex.ru/"
     headers = {
         "Content-Type": "application/json",

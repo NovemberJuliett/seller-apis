@@ -17,7 +17,7 @@ def get_product_list(last_id, client_id, seller_token):
     Аргументы:
         last_id: идентификатор последнего значения на странице
         client_id: идентификатор клиента
-        seller_token: API продавца
+        seller_token: токен продавца
 
     Возвращает:
         dict: словарь с информацией о товарах
@@ -66,7 +66,7 @@ def get_offer_ids(client_id, seller_token):
 
     Аргументы:
         client_id: идентификатор клиента
-        seller_token: API продавца
+        seller_token: токен продавца
 
     Возвращает:
        list: список артикулов товаров
@@ -98,7 +98,7 @@ def update_price(prices: list, client_id, seller_token):
     Аргументы:
         prices: список цен на товары
         client_id: идентификатор клиента
-        seller_token: API продавца
+        seller_token: токен продавца
 
     Возвращает:
         dict: словарь с информацией о товарах
@@ -138,7 +138,7 @@ def update_stocks(stocks: list, client_id, seller_token):
      Аргументы:
         stocks: список товаров на складах
         client_id: идентификатор клиента
-        seller_token: API продавца
+        seller_token: токен продавца
 
     Возвращает:
         dict: словарь с информацией об остатках
@@ -320,7 +320,7 @@ async def upload_prices(watch_remnants, client_id, seller_token):
     Аргументы:
         watch_remnants: остатки часов
         client_id: идентификатор клиента
-        seller_token: API продавца
+        seller_token: токен продавца
 
     Возвращает:
         list: список цен на товары
@@ -350,7 +350,7 @@ async def upload_stocks(watch_remnants, client_id, seller_token):
     Аргументы:
         watch_remnants: остатки часов
         client_id: идентификатор клиента
-        seller_token: API продавца
+        seller_token: токен продавца
 
     Возвращает:
         list: список товаров, наличие которых не равно 0, и обновленный список остатков товаров
